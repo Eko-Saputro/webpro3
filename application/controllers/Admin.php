@@ -6,7 +6,9 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        //ditambahkan pert 7
         $this->load->model(['ModelBuku', 'ModelUser', 'ModelBooking']);
+        //--
         cek_login();
         cek_user();
     }
@@ -19,7 +21,9 @@ class Admin extends CI_Controller
         $data['buku'] = $this->ModelBuku->getLimitBuku()->result_array();
 
         //mengupdate stok dan dibooking pada tabel buku
+                //ditambahkan pert7              
                 $detail = $this->db->query("SELECT*FROM booking,booking_detail, buku WHERE booking.id_booking=booking_detail.id_booking and booking_detail.id_buku=buku.id")->result_array();
+
                 foreach ($detail as $key) {
                     $id_buku = $key['id_buku'];
                     $batas = $key['tgl_booking'];
